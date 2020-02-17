@@ -13,3 +13,16 @@ split -b 10K data.file
 split -b 10K data.file -d
 split -b 10M data.file -d -a 2
 split -l 10 data.file
+
+
+split 会把源文拆分成指定大小的多个小文件,如果要合成原来的文件,如下
+假设有两个小文件是 SmallFile.mp41 SmallFile.mp42
+只需如下
+    cat SmallFile.mp42 >> SmallFile.mp41
+        # 注意一定是要追加重定向
+    mv SmallFile.mp41 SmallFile.mp4
+        # 最后的这个 SmallFile.mp4 就是源文件
+    同理,3个或3个以上文件
+        SmallFile.mp43 >> SmallFile.mp42
+        SmallFile.mp42 >> SmallFile.mp41
+        mv SmallFile.mp41 SmallFile.mp4
